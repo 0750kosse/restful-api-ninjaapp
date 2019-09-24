@@ -1,0 +1,20 @@
+<div class="nav-bar-header">
+  <a href="/" class="nav-bar ninja-home" src="img/timeline.png" alt="user-home">Home</a>
+  <a href="/list" class="nav-bar ninja-list" src="img/research.png" alt="user-search">Ninjas List</a>
+  <a href="/admin" class="nav-bar ninja-admin" src="img/notification.png" alt="user-notifications">Admin</a>
+
+</div>
+<h1>Ninjas List</h1>
+{{#each ninjas}}
+<div id="ninjasNear">
+
+  <li>
+    <span class="ninjasNear__available"></span>
+    <span class="ninjasNear__name">{{this.name}}</span>
+    <span class="ninjasNear__rank">{{this.rank}}</span>
+    <span class="ninjasNear__dist"></span>
+  </li>
+</div>
+</div>
+</div>
+{{/each}}

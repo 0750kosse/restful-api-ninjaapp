@@ -1,0 +1,18 @@
+<div class="nav-bar-header">
+  <a href="/" class="nav-bar ninja-home" src="img/timeline.png" alt="user-home">Home</a>
+  <a href="/list" class="nav-bar ninja-list" src="img/research.png" alt="user-search">Ninjas List</a>
+  <a href="/admin" class="nav-bar ninja-admin" src="img/notification.png" alt="user-notifications">Admin</a>
+
+</div>
+<div id="homepage">
+  <h1>Hire a ninja in your area</h1>
+  <div id="ninjas">
+    <form action="/api/ninjas" method="GET">
+      Longitude<br>
+      <input type="text" name="lng" placeholder="Enter longitude data">
+      <br>
+      Latitude<br>
+      <input type="text" name="lat" placeholder="Enter longitude data">
+      <br><br>
+      <input type="submit" value="Find me a ninja">
+    </form>
