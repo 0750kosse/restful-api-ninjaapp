@@ -7,14 +7,11 @@
 <h1>Ninjas List</h1>
 {{#each ninjas}}
 <div id="ninjasNear">
-
   <li>
-    <span class="ninjasNear__available"></span>
+    <span class="ninjasNear__available">{{this.available}}</span>
     <span class="ninjasNear__name">{{this.name}}</span>
     <span class="ninjasNear__rank">{{this.rank}}</span>
-    <span class="ninjasNear__dist"></span>
+    <span class="ninjasNear__dist">{{this.geometry}}</span>
   </li>
-</div>
-</div>
 </div>
 {{/each}}

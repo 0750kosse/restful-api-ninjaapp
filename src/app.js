@@ -11,9 +11,7 @@ const config = {
   useCreateIndex: true
 }
 
-//set up express app
 const app = express();
-//connect to mongodb
 mongoose.connect('mongodb://localhost/ninjago', config);
 mongoose.Promise = global.Promise;
 
@@ -31,36 +29,14 @@ app.set('views', path.join(__dirname, 'views'));
 
 const port = 4000;
 
-
-
-//use body parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/public')));
 
-//initialize routes
-//app.use('/api', require('./routes/api'));
 
 app.get('/', (req, res, next) => {
   res.render('home')
 });
-
-app.get('/list', (req, res, next) => {
-  const firstNames = [];
-  Ninja.find({}).then((ninjas) => {
-    ninjas.forEach((ninja) => {
-      const names = firstNames.push(ninja.name);
-      const rank = firstNames.push(ninja.rank);
-      console.log(firstNames);
-    })
-    res.render('ninjasList', { ninjas })
-  })
-})
-
-app.get('/admin', (req, res, next) => {
-  res.status(404).send("404 Error - Page in construction")
-});
-
 
 //ADD A NEW NINJA TO THE DB
 app.post('/', (req, res, next) => {
@@ -83,19 +59,50 @@ app.delete('/:id', (req, res, next) => {
   Ninja.findByIdAndRemove({ _id: req.params.id }).then(function (ninja) {
     res.send(ninja)
   })
-
 })
+
+//GET NINJAS BASED ON LOCATION
+
+app.get('/api/ninjas', (req, res, next) => {
+
+  Ninja.aggregate([
+    {
+      "$geoNear": {
+        "near": {
+          "type": "Point",
+          "coordinates": [parseFloat(req.query.lng), parseFloat(req.query.lat)]
+        },
+        "distanceField": "dist.calculated",
+        "maxDistance": 100000,
+        "distanceMultiplier": 0.001,
+        "spherical": true
+      }
+    }]
+  ).then((ninjas) => {
+    res.render('home', { ninjas })
+  })
+})
+
+//GET LIST OF NINJAS SORTED BY NAME
+app.get('/list', (req, res, next) => {
+  const firstNames = [];
+  Ninja.find({}).sort({ name: 1 }).then((ninjas) => {
+    ninjas.forEach((ninja) => {
+      const ninjaNamesList = firstNames.push(ninja.name);
+      const ninjaRankList = firstNames.push(ninja.rank);
+    })
+    res.render('ninjasList', { ninjas })
+  })
+})
+
+//GET ADMIN PAGE
+app.get('/admin', (req, res, next) => {
+  res.status(404).send("404 Error - Page in construction")
+});
 
 //error handling middleware
 app.use(function (err, req, res, next) {
   res.status(422).send({ err: err._message })
 })
-
-
-
-
-
-
-//listen for requests
 
 app.listen(port, () => console.log(`app listening on port ${port}`))

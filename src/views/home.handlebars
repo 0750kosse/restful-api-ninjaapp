@@ -16,3 +16,16 @@
       <br><br>
       <input type="submit" value="Find me a ninja">
     </form>
+    <!--added in order to return results, is that correct 
+or should this be on a new hbs file, ie ninjasResults from api...???? -->
+    {{#each ninjas}}
+    <div id="ninjasResults">
+      <li>
+        <span class="ninjasNear__available">{{this.dist.calculated}}</span>
+        <span class="ninjasNear__name">{{this.name}}</span>
+        <span class="ninjasNear__rank">{{this.rank}}</span>
+      </li>
+    </div>
+    {{else}}
+    <p>No ninjas found</p>
+    {{/each}}
