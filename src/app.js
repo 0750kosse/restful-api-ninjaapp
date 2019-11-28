@@ -20,7 +20,6 @@ const handlebars = exphbs.create({
   partialsDir: path.join(__dirname, "views/partials"),
   defaultLayout: 'main',
   extname: 'handlebars',
-
 });
 
 app.engine('handlebars', exphbs());
@@ -64,21 +63,29 @@ app.delete('/:id', (req, res, next) => {
 //GET NINJAS BASED ON LOCATION
 
 app.get('/api/ninjas', (req, res, next) => {
-
+  const myNinjas = [];
   Ninja.aggregate([
     {
       "$geoNear": {
         "near": {
           "type": "Point",
-          "coordinates": [parseFloat(req.query.lng), parseFloat(req.query.lat)]
+          "coordinates": [parseFloat(req.query.lng), parseFloat(req.query.lat)],
         },
         "distanceField": "dist.calculated",
-        "maxDistance": 100000,
+        "maxDistance": 500000,
         "distanceMultiplier": 0.001,
-        "spherical": true
+        "spherical": true,
       }
+    }, {
+      $project: { distanceField: { $round: ["$dist.calculated", 2] }, _id: 1, name: 1, rank: 1, available: 1 }
     }]
   ).then((ninjas) => {
+    console.log(ninjas);
+    ninjas.forEach((ninja) => {
+      const name = myNinjas.push(ninja.name);
+      const rank = myNinjas.push(ninja.rank);
+      const available = myNinjas.push(ninja.available);
+    })
     res.render('home', { ninjas })
   })
 })
@@ -104,5 +111,6 @@ app.get('/admin', (req, res, next) => {
 app.use(function (err, req, res, next) {
   res.status(422).send({ err: err._message })
 })
+
 
 app.listen(port, () => console.log(`app listening on port ${port}`))
