@@ -86,7 +86,7 @@ app.get('/api/ninjas', (req, res, next) => {
       const rank = myNinjas.push(ninja.rank);
       const available = myNinjas.push(ninja.available);
     })
-    res.render('home', { ninjas })
+    res.render('results', { ninjas })
   })
 })
 

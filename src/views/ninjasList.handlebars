@@ -4,14 +4,17 @@
   <a href="/admin" class="nav-bar ninja-admin" src="img/notification.png" alt="user-notifications">Admin</a>
 
 </div>
-<h1>Ninjas List</h1>
+<h1 class="ninjasNear-title">Our partners ninjas</h1>
 {{#each ninjas}}
-<div id="ninjasNear">
-  <li>
-    <span class="ninjasNear__available">{{this.available}}</span>
-    <span class="ninjasNear__name">{{this.name}}</span>
-    <span class="ninjasNear__rank">{{this.rank}}</span>
-    <span class="ninjasNear__dist">{{this.geometry}}</span>
+<div id="ninjasNear" class="ninjasNear-container">
+  <li class="ninjasNear-list">
+    <span class="ninjasNear-list__name">Name : {{this.name}}</span>
+    <span class="ninjasNear-list__rank">Rank : {{this.rank}}</span>
+    <div class="ninjasNear-list__availability">
+      <span {{#if this.available}} class="ninjasNear-list__available">Available
+        {{else}} <span class="ninjasNear-list__unavailable" {{this.available}}>Not Available</span>
+        {{/if}}</span>
+    </div>
   </li>
 </div>
 {{/each}}
