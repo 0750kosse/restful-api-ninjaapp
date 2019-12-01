@@ -17,21 +17,26 @@
 
     </div>
   </div>
-  <div class="why-us__container">
-    <h2 class="why-us__headline">The Ninja solution for your business</h2>
-    <p class="why-us__text">Get the best price on your ninjas by comparing cabs across 550 towns and cities nationwide.
-    </p>
-    <p class="why-us__text">Our marketplace presents licensed providers of standard, Executive and Zero Emission ninjas
-      today, with
-      ‘roboninjas’ coming in the future!</p>
-    <div class="why-us__guarantee">
-      <span class="why-us__guarantee__logo2">Back</span>
-      <span class="why-us__guarantee__logo">Backed by NinjaGo</span>
 
-      <span class="why-us__guarantee__text">Every ninja is 'Backed by NinjaGo'. Free cancellation and much more</span>
+  <div id="ninjasResults" class="result-box">
+
+    {{#each ninjas}}
+    <p class="result-box__text">Your nearest ninjas : </p>
+    <div class="result-box__container">
+      <li class="result-box__list">
+        <span class="result-box__name">{{this.name}}</span>
+        <span class="result-box__rank">{{this.rank}}</span>
+        <span class="result-box__distance"> {{this.distanceField}} Km away</span>
+      </li>
+      <div class="result-box__availability">
+        <span {{#if this.available}} class="result-box__available">Available
+          {{else}} <span class="result-box__unavailable" {{this.available}}>Not Available</span>
+          {{/if}}</span>
+        <span class="result-box__book">Book now</span>
+      </div>
     </div>
+    {{else}}
+    <p>No ninjas found</p>
+    {{/each}}
   </div>
-  <!--added in order to return results, is that correct 
-or should this be on a new hbs file, ie ninjasResults from api...???? -->
-
 </div>
