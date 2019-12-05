@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
+const Ninja = require('../models/ninja')
 const config = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -14,6 +15,13 @@ const app = express();
 
 mongoose.connect('mongodb://localhost/ninjago', config);
 mongoose.Promise = global.Promise;
+
+const handlebars = exphbs.create({
+  layoutsDir: path.join(__dirname, "views/layouts"),
+  partialsDir: path.join(__dirname, "views/partials"),
+  defaultLayout: 'main',
+  extname: 'handlebars',
+});
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
