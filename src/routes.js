@@ -13,15 +13,17 @@ function getHome(req, res, next) {
 
 //pending : create functionality to post new ninjas
 
-function postNinja(req, res, next) {
-  Ninja.create({
-    name: req.body.name,
-    available: req.body.available,
-    rank: req.body.rank,
+function postApiNinjas(req, res, next) {
+
+  const newNinja = {
+    name: req.body['name'],
+    available: req.body['available'],
+    rank: req.body['rank'],
     geometry: {
       coordinates: [req.body.lng, req.body.lat]
     }
-  }).then((ninja) => {
+  }
+  Ninja.create(newNinja).then((ninja) => {
     console.log(req.body)
     res.render('admin-success', ninja)
   })
@@ -84,12 +86,13 @@ function deleteApiNinjas(req, res, next) {
 router.get(paths.home, getHome);
 
 router.get(paths.admin, getAdmin)
-router.post(paths.admin, postNinja);
+//router.post(paths.admin, postNinja);
 
 router.get(paths.list, getList)
 
 
 router.get(paths.api, getApiNinjas)
+router.post(paths.api, postApiNinjas)
 router.put(paths.api + '/:id', putApiNinjas);
 router.delete(paths.api + '/:id', deleteApiNinjas);
 
