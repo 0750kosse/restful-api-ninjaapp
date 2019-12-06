@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
-const Ninja = require('../models/ninja')
+const methodOverride = require('method-override')
 const config = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -29,6 +29,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 const port = 4000;
 
+app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/public')));

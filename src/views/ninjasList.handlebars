@@ -4,17 +4,22 @@
   <a href="/admin" class="nav-bar ninja-admin" src="img/notification.png" alt="user-notifications">Admin</a>
 
 </div>
-<h1 class="ninjasNear-title">Our partners ninjas</h1>
+<h1 class="ninjasNear-title">Our list of ninjas</h1>
 {{#each ninjas}}
 <div id="ninjasNear" class="ninjasNear-container">
   <li class="ninjasNear-list">
     <span class="ninjasNear-list__name">Name : {{this.name}}</span>
     <span class="ninjasNear-list__rank">Rank : {{this.rank}}</span>
+    <span class="ninjasNear-list__id">ID : {{this._id}}</span>
     <div class="ninjasNear-list__availability">
       <span {{#if this.available}} class="ninjasNear-list__available">Available
         {{else}} <span class="ninjasNear-list__unavailable" {{this.available}}>Not Available</span>
         {{/if}}</span>
     </div>
+    <form method="post" action="/api/ninjas/{{this._id}}?_method=DELETE">
+      <button type="submit" name="_method" value="DELETE">Delete</button>
+    </form>
+
   </li>
 </div>
 {{/each}}

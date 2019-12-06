@@ -35,6 +35,7 @@ function getList(req, res, next) {
     ninjas.forEach((ninja) => {
       const ninjaNamesList = firstNames.push(ninja.name);
       const ninjaRankList = firstNames.push(ninja.rank);
+      const ninjaIdList = firstNames.push(ninja._id);
     })
     res.render('ninjasList', { ninjas })
   })
@@ -70,17 +71,27 @@ function getApiNinjas(req, res, next) {
 }
 
 function putApiNinjas(req, res, next) {
-  Ninja.findByIdAndUpdate({ _id: req.params.id }, req.body).then(() => {
-    Ninja.findOne({ _id: req.params.id }).then((ninja) => {
-      res.send(ninja)
+  const ninjaToUpdate = {
+    name: req.body['name'],
+    available: req.body['available'],
+    rank: req.body['rank'],
+    geometry: {
+      coordinates: [req.body.lng, req.body.lat]
+    }
+  }
+  Ninja.findByIdAndUpdate({ _id: req.params.id }, ninjaToUpdate, { new: true })
+    .then((ninja) => {
+      res.send({ ninja })
     })
-  })
+
 }
 
 function deleteApiNinjas(req, res, next) {
-  Ninja.findByIdAndRemove({ _id: req.params.id }).then(function (ninja) {
-    res.send(ninja)
+  Ninja.findByIdAndRemove({ _id: req.params.id }).then((ninja) => {
+    res.render('ninjasList')
   })
+
+
 }
 
 router.get(paths.home, getHome);
