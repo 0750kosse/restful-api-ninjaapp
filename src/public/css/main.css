@@ -176,6 +176,39 @@ input[type=submit] {
     margin: 10px 5px;
  }
 
+ /* ADMIN */
+ .createNinja-container {
+   padding :4% 2%;
+   margin-bottom : 10px;
+  }
+
+.createNinja-header {
+  color : #fff;
+  margin-bottom : 10px;
+}
+
+ .createNinja-form {
+  border : 2px solid #326197;
+  padding : 2%;
+  width : 80%;
+  margin : 0 auto;
+ }
+
+ select {
+margin-bottom : 2em;
+height : 50px;
+width : 25%;
+font-size: 16px;
+ }
+
+input.createNinja-box__submit[type="submit"] {
+  width : 50%;
+  height : 45px;
+  margin-left : 2em;
+
+  
+}
+
 .links {
   color : #fff;
   text-decoration : none;

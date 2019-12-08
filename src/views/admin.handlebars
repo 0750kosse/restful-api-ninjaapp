@@ -1,15 +1,33 @@
-<div>
-  <h1>Enter new ninja details</h1>
-  <form action="/api/ninjas" method="POST">
-    <div>
-      <input type="text" class="search-box__longField" name="name" placeholder="Enter name...">
-      <input type="text" class="search-box__latField" name="rank" placeholder="Enter rank...">
-      <input type="text" class="search-box__longField" name="available" placeholder="Enter availability...">
-      <input type="number" class="search-box__latField" name="lng" placeholder="Enter your long...">
-      <input type="number" class="search-box__latField" name="lat" placeholder="Enter your latitude...">
+<div class="createNinja-container">
+  <h1 class="createNinja-header">Enter new ninja details</h1>
+
+  <form action="/api/ninjas" method="POST" class="createNinja-form">
+    <div class="createNinja-box">
+      <label for="createNinja-box__name"> Name : </label>
+      <input type="text" id="createNinja-box__name" class="createNinja-box__name" name="name"
+        placeholder="Enter name...">
+
+      <label for="createNinja-box__rank"> Rank : </label>
+      <input type="text" id="createNinja-box__rank" class="createNinja-box__rank" name="rank"
+        placeholder="Enter rank...">
+
+      <label for="createNinja-box__long"> Longitude : </label>
+      <input type="text" id="createNinja-box__long" class="createNinja-box__long" name="lng"
+        placeholder="Enter longitude...">
+
+      <label for="createNinja-box__lat"> Latitude : </label>
+      <input type="text" id="createNinja-box__lat" class="createNinja-box__lat" name="lat"
+        placeholder="Enter latitude...">
+
+      <select>
+        <option class="createNinja-box__available" id="createNinja-box__select" value="volvo">True</option>
+        <option class="createNinja-box__available" id="createNinja-box__select" value="volvo">False</option>
+
+      </select>
+      <input type="submit" class="createNinja-box__submit" value="Save details">
+
     </div>
-    <input type="submit" class="search-box__submitButton" value="Save details">
-    <input type="submit" class="search-box__submitButton" value="Amend details">
-    <input type="submit" class="search-box__submitButton" value="Delete ninja">
+
   </form>
+
 </div>
