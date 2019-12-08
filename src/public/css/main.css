@@ -32,7 +32,8 @@ body {
   color: #F3F9FF;
   padding : 0 15px;
   }
-  .search-box__intro{
+
+.search-box__intro{
     margin-bottom:10px;
   }
 
@@ -95,8 +96,9 @@ input[type=submit] {
 .result-box__text {
     display : none;
   }
-  .result-box__text:first-child,
- .ninjasNear-title {
+
+.result-box__text:first-child,
+.ninjasNear-title {
   display: block;
   margin : 10px 10px;
   color : #fff;
@@ -104,7 +106,6 @@ input[type=submit] {
   font-weight: 700;
   padding: 15px 5px 5px 5px;
 }
-
 
 .result-box__list,
 .ninjasNear-list {
@@ -120,22 +121,22 @@ input[type=submit] {
   font-size : 16px;
   font-weight : 700;
   }
+
 .ninjasNear-list {
   width: 90%;
-}
+ }
 
 .result-box__name,
 .result-box__rank,
 .result-box__distance,
 .ninjasNear-list__name,
 .ninjasNear-list__rank,
+.ninjasNear-list__longitude,
+.ninjasNear-list__latitude,
 .ninjasNear-list__available {
   display: block;
   margin : 10px 15px;
-  
- 
-  
-  }
+}
 
 .result-box__availability,
 .ninjasNear-list__availability {
@@ -156,8 +157,8 @@ input[type=submit] {
     padding: 5px;
   }
 
-  .result-box__available,
-  .ninjasNear-list__available {
+.result-box__available,
+.ninjasNear-list__available {
     background: green;
   }
 
@@ -170,9 +171,19 @@ input[type=submit] {
   background-color: #253754 ;
   }
 
-  .ninjasNear-list__available,
-  .ninjasNear-list__unavailable {
+.ninjasNear-list__available,
+.ninjasNear-list__unavailable {
     margin: 10px 5px;
+ }
+
+.links {
+  color : #fff;
+  text-decoration : none;
+  display: block;
+  margin: 10px 10px;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 15px 5px 5px 5px;
   }
 
   @media (min-width: 768px) {

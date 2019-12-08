@@ -11,8 +11,6 @@ function getHome(req, res, next) {
   res.render('home')
 }
 
-//pending : create functionality to post new ninjas
-
 function postApiNinjas(req, res, next) {
 
   const newNinja = {
@@ -24,13 +22,13 @@ function postApiNinjas(req, res, next) {
     }
   }
   Ninja.create(newNinja).then((ninja) => {
-    console.log(req.body)
     res.render('admin-success', ninja)
   })
 }
 
 function getList(req, res, next) {
   const firstNames = [];
+
   Ninja.find({}).sort({ name: 1 }).then((ninjas) => {
     ninjas.forEach((ninja) => {
       const ninjaNamesList = firstNames.push(ninja.name);
@@ -43,6 +41,7 @@ function getList(req, res, next) {
 
 function getApiNinjas(req, res, next) {
   const myNinjas = [];
+
   Ninja.aggregate([
     {
       "$geoNear": {
@@ -59,8 +58,6 @@ function getApiNinjas(req, res, next) {
       $project: { distanceField: { $round: ["$dist.calculated", 2] }, _id: 1, name: 1, rank: 1, available: 1 }
     }]
   ).then((ninjas) => {
-    console.log(ninjas);
-
     ninjas.forEach((ninja) => {
       const name = myNinjas.push(ninja.name);
       const rank = myNinjas.push(ninja.rank);
@@ -79,19 +76,25 @@ function putApiNinjas(req, res, next) {
       coordinates: [req.body.lng, req.body.lat]
     }
   }
+
   Ninja.findByIdAndUpdate({ _id: req.params.id }, ninjaToUpdate, { new: true })
     .then((ninja) => {
       res.send({ ninja })
     })
-
 }
 
 function deleteApiNinjas(req, res, next) {
   Ninja.findByIdAndRemove({ _id: req.params.id }).then((ninja) => {
-    res.render('ninjasList')
+
+    const deletedNinja = {
+      name: ninja['name'],
+      rank: ninja['rank'],
+      available: ninja['available'],
+      lng: ninja.geometry['coordinates'][0],
+      lat: ninja.geometry['coordinates'][1]
+    }
+    res.render('deletedNinjas', deletedNinja)
   })
-
-
 }
 
 router.get(paths.home, getHome);
