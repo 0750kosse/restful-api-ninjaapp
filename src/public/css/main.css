@@ -59,6 +59,7 @@ input[type=text] {
   height :50px;
   font-size: 14px!important;
   margin-bottom : 25px;
+  text-transform: capitalize;
   }
 
 input[type=submit] {
@@ -192,6 +193,11 @@ input[type=submit] {
   padding : 2%;
   width : 80%;
   margin : 0 auto;
+  color : #fff;
+ }
+
+ .createNinja-box {
+  padding : 4%;
  }
 
  select {
@@ -203,10 +209,8 @@ font-size: 16px;
 
 input.createNinja-box__submit[type="submit"] {
   width : 50%;
-  height : 45px;
+  height : 50px;
   margin-left : 2em;
-
-  
 }
 
 .links {
@@ -219,7 +223,7 @@ input.createNinja-box__submit[type="submit"] {
   padding: 15px 5px 5px 5px;
   }
 
-  @media (min-width: 768px) {
+@media (min-width: 768px) {
     body {
       background-image: url('http://fog-wlprs.pw/images/600/DSC100667783.jpg');
       background-size: cover;
@@ -255,6 +259,7 @@ margin : 1em 0 2em;
   input[type=submit]{
     margin : 2em 0; 
   }
+
   .search-box__forms{
     margin-top: 2em;
   }
@@ -266,11 +271,12 @@ margin : 1em 0 2em;
     width: 50%;
     color : #fff;
     line-height: 150%;
-    
   }
-.why-us__headline {
+
+  .why-us__headline {
   margin-bottom: 1em;
-}
+  }
+
   .why-us__text{
     margin : 1em 0;
     line-height: 20px;
@@ -278,13 +284,10 @@ margin : 1em 0 2em;
     font-size: 16px;
     letter-spacing: 1px;
     max-width: 50em;
-    
     color: #FFF;
-    
     padding-bottom: 5px;
     text-shadow: 0 0 7px #2f5450;
-    
-  }
+    }
 
   .why-us__guarantee{
     border: 1px solid #fff;
@@ -295,16 +298,16 @@ margin : 1em 0 2em;
     padding :15px;
   }
 
-  .why-us__guarantee__logo {
-      width: 40px;
-      height: 40px;
-      background: #5cc4f1;
-      border-radius :5px;
-      margin-top: 4px;
-      transform: rotate(45deg) skew(5deg, 0deg);
-      border:1px solid #fff;
-      margin-left : -55px;
-      font-size: xx-small;
+.why-us__guarantee__logo {
+    width: 40px;
+    height: 40px;
+    background: #5cc4f1;
+    border-radius :5px;
+    margin-top: 4px;
+    transform: rotate(45deg) skew(5deg, 0deg);
+    border:1px solid #fff;
+    margin-left : -55px;
+    font-size: xx-small;
     line-height: 10px;
     padding:3px;
     text-orientation: upright;
@@ -312,28 +315,26 @@ margin : 1em 0 2em;
 .why-us__guarantee__logo2 {
    background-color:  #253754;
    color:  #253754;
-  width: 50px;
-      height: 50px;
-     border-radius :5px;
-      margin-top: 4px;
-      transform: rotate(45deg) skew(5deg, 0deg);
-      border:1px solid #fff;
-      margin-left : 25px;
+   width: 50px;
+   height: 50px;
+   border-radius :5px;
+   margin-top: 4px;
+   transform: rotate(45deg) skew(5deg, 0deg);
+   border:1px solid #fff;
+   margin-left : 25px;
 }
 
 .why-us__guarantee__text {
   margin-left : 40px;
 }
     
-
 .result-box {
   display: flex;
   flex-flow: row wrap;
   width: 25%;
-  
 }
 
-  }
+}
 
   
 

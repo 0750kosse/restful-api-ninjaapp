@@ -20,6 +20,7 @@ const GeoSchema = new Schema({
 const NinjaSchema = new Schema({
   name: {
     type: String,
+    uppercase: true,
     required: [true, 'Name is required'],
   },
   rank: {

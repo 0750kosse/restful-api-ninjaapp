@@ -1,0 +1,35 @@
+<div class="createNinja-container">
+  <h1 class="createNinja-header">Update ninjas</h1>
+
+  <form action="/update-ninja/{{ninja._id}}" method="post" class="createNinja-form">
+    <div class="createNinja-box">
+      <label for="createNinja-box__name"> Name : </label>
+      <input type="text" id="createNinja-box__name" class="createNinja-box__name" name="name"
+        placeholder="Enter name..." value={{ninja.name}}>
+
+      <label for="createNinja-box__rank"> Rank : </label>
+      <input type="text" id="createNinja-box__rank" class="createNinja-box__rank" name="rank"
+        placeholder="Enter rank..." value={{ninja.rank}}>
+
+      <label for="createNinja-box__long"> Longitude :</label>
+      <input type="text" id="createNinja-box__long" class="createNinja-box__long" name="lng"
+        placeholder="Enter longitude..." value={{lng}}>
+
+      <label for="createNinja-box__lat"> Latitude :</label>
+      <input type="text" id="createNinja-box__lat" class="createNinja-box__lat" name="lat"
+        placeholder="Enter latitude..." value={{lat}}>
+      <h3>Select availability : </h3>
+      <select name="available">
+        <option class="createNinja-box__available" value="true" {{#if ninja.available }} selected {{/if}}>True
+        </option>
+        <option class="createNinja-box__available" value="false" {{#unless ninja.available }}selected {{/unless}}>
+          False
+        </option>
+      </select>
+      <input type="submit" class="createNinja-box__submit" name="_method" value="edit">
+
+    </div>
+
+  </form>
+
+</div>

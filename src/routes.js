@@ -12,7 +12,6 @@ function getHome(req, res, next) {
 }
 
 function postApiNinjas(req, res, next) {
-
   const newNinja = {
     name: req.body['name'],
     available: req.body['available'],
@@ -28,7 +27,6 @@ function postApiNinjas(req, res, next) {
 
 function getList(req, res, next) {
   const firstNames = [];
-
   Ninja.find({}).sort({ name: 1 }).then((ninjas) => {
     ninjas.forEach((ninja) => {
       const ninjaNamesList = firstNames.push(ninja.name);
@@ -41,7 +39,6 @@ function getList(req, res, next) {
 
 function getApiNinjas(req, res, next) {
   const myNinjas = [];
-
   Ninja.aggregate([
     {
       "$geoNear": {
@@ -67,25 +64,8 @@ function getApiNinjas(req, res, next) {
   })
 }
 
-function putApiNinjas(req, res, next) {
-  const ninjaToUpdate = {
-    name: req.body['name'],
-    available: req.body['available'],
-    rank: req.body['rank'],
-    geometry: {
-      coordinates: [req.body.lng, req.body.lat]
-    }
-  }
-
-  Ninja.findByIdAndUpdate({ _id: req.params.id }, ninjaToUpdate, { new: true })
-    .then((ninja) => {
-      res.send({ ninja })
-    })
-}
-
 function deleteApiNinjas(req, res, next) {
   Ninja.findByIdAndRemove({ _id: req.params.id }).then((ninja) => {
-
     const deletedNinja = {
       name: ninja['name'],
       rank: ninja['rank'],
@@ -97,17 +77,38 @@ function deleteApiNinjas(req, res, next) {
   })
 }
 
+function getUpdatedNinja(req, res, next) {
+  Ninja.findById({ _id: req.params.id }).then((ninja) => {
+    const lng = ninja.geometry.coordinates[0];
+    const lat = ninja.geometry.coordinates[1];
+    res.render('updatedNinjas', { ninja, lng, lat })
+  })
+}
+
+function postUpdatedNinja(req, res, next) {
+  const updatedNinja = {
+    name: req.body['name'],
+    rank: req.body['rank'],
+    available: req.body['available'],
+    geometry: {
+      coordinates: [req.body.lng, req.body.lat]
+    }
+  }
+  Ninja.findByIdAndUpdate({ _id: req.params.id }, updatedNinja).then((ninja) => {
+    res.redirect(paths.list)
+  })
+}
+
 router.get(paths.home, getHome);
 
 router.get(paths.admin, getAdmin)
-//router.post(paths.admin, postNinja);
-
 router.get(paths.list, getList)
 
+router.get(paths.updateNinja + '/:id', getUpdatedNinja)
+router.post(paths.updateNinja + '/:id', postUpdatedNinja)
 
 router.get(paths.api, getApiNinjas)
 router.post(paths.api, postApiNinjas)
-router.put(paths.api + '/:id', putApiNinjas);
 router.delete(paths.api + '/:id', deleteApiNinjas);
 
 module.exports = router
