@@ -13,13 +13,15 @@
     <span class="ninjasNear-list__id">ID : {{this._id}}</span>
     <div class="ninjasNear-list__availability">
       <span {{#if this.available}} class="ninjasNear-list__available">Available
-        {{else}} <span class="ninjasNear-list__unavailable" {{this.available}}>Not Available</span>
+        {{else}} <span class="ninjasNear-list__unavailable" {{this.available}}>Unvailable</span>
         {{/if}}</span>
     </div>
-    <form method="post" action="/api/ninjas/{{this._id}}?_method=DELETE">
-      <button type="submit" name="_method" value="DELETE">Delete</button>
-    </form>
-    <a href="/update-ninja/{{this._id}}">Go to update</a>
+    <div class="ninjasNear-list__actions">
+      <form method="post" action="/api/ninjas/{{this._id}}?_method=DELETE">
+        <button type="submit" name="_method" value="DELETE" class="delete-button">Delete</button>
+      </form>
+      <a href="/update-ninja/{{this._id}}" class="update-button">Update</a>
+    </div>
   </li>
 </div>
 {{/each}}

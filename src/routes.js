@@ -112,3 +112,5 @@ router.post(paths.api, postApiNinjas)
 router.delete(paths.api + '/:id', deleteApiNinjas);
 
 module.exports = router
+
+
