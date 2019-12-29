@@ -94,7 +94,7 @@ input[type=submit] {
   width : 90%;
   box-shadow: 0 0 5px rgba(97,142,194,.4);
   margin : 0 auto;
-  margin-bottom : 10px;
+  margin-bottom : 25px;
   background-color:#fff;
   border-radius: 10px!important;
   }
@@ -112,6 +112,7 @@ input[type=submit] {
   font-weight: 700;
   padding: 15px 5px 5px 5px;
   }
+
 
 .result-box__list,
 .ninjasNear-list {
@@ -137,10 +138,12 @@ input[type=submit] {
 .result-box__distance,
 .ninjasNear-list__name,
 .ninjasNear-list__rank,
+.ninjasNear-list__id,
 .ninjasNear-list__longitude,
 .ninjasNear-list__latitude,
 .ninjasNear-list__available {
   display: block;
+  margin: 10px 0;
   }
 
 .ninjasNear-list__name {
@@ -265,28 +268,27 @@ font-size: 16px;
 
 @media (min-width: 768px) {
 body {
-  background-image: url('http://fog-wlprs.pw/images/600/DSC100667783.jpg');
+  background-image: url('https://img.wallpapersafari.com/tablet/768/1024/58/99/Hxqt13.jpg');
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-color: #fff;
   }
 
 .page-container {
   display: flex;
-  flex-direction: row;
+  flex-flow: row;
   align-items: flex-start;
+  margin-top: 15em;
   }
 
-.search-box{
-  border-radius: 10px!important;
-  margin: 3em 3em 2em 5em;
-  }
+/* Search box spacing */
 
- /* Search box spacing */
 .search-box {
+  width: 45%;
+  border-radius: 10px!important;
   background-color: #253754;
-  width: 25%;
-  margin : 3em 3em 0 5em;
+  margin-top : 10px;
+  margin : 0 2em;
   }
 
 .search-box__intro {
@@ -308,7 +310,6 @@ input[type=submit]{
   /* Search box spacing ends */
 
 .why-us__container {
-  margin-top : 2em;
   width: 50%;
   color : #fff;
   line-height: 150%;
@@ -372,7 +373,11 @@ input[type=submit]{
 .result-box {
    display: flex;
    flex-flow: row wrap;
-   width: 25%;
+   width: 60%;
+   background-color: #253754;
+   border-radius: 10px;
+   margin : 0 2em;
+   padding: 1em;
   }
 
 .delete-button:hover,
@@ -380,6 +385,21 @@ input[type=submit]{
    background-color: #ffdb3a; 
  }
 
+ /* NINJAS LIST */
+
+ .ninjasNear-title,
+ .createNinja-header {
+   color: #253754;
+   text-align: center;
+ }
+
+.ninjasNear-container {
+  width: 60%;
+ }
+.createNinja-form,
+.createNinja-box__availability {
+  color: #253754;
+ }
 }
 
   
